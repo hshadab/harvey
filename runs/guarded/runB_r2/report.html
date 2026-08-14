@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Agent Evaluation — runB_r2</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+         max-width: 960px; margin: 40px auto; padding: 0 24px;
+         color: #1a1a1a; line-height: 1.5; }
+  h1 { font-size: 1.4rem; margin-bottom: 4px; }
+  .meta { color: #666; font-size: 0.85rem; margin-bottom: 32px; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+            margin-bottom: 40px; }
+  .stat { background: #f5f5f5; border-radius: 8px; padding: 16px; text-align: center; }
+  .stat .value { font-size: 2rem; font-weight: 700; }
+  .stat .label { font-size: 0.75rem; color: #666; text-transform: uppercase;
+                  letter-spacing: 0.05em; margin-top: 4px; }
+  h2 { font-size: 1.1rem; border-bottom: 2px solid #eee; padding-bottom: 8px;
+        margin-top: 40px; }
+  details { border: 1px solid #e0e0e0; border-radius: 6px;
+             margin-bottom: 8px; overflow: hidden; }
+  details[open] { border-color: #b0b0b0; }
+  summary { padding: 12px 16px; cursor: pointer; list-style: none;
+             display: flex; align-items: center; gap: 10px;
+             background: #fafafa; user-select: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: '▶'; font-size: 0.7rem; color: #999;
+                     transition: transform 0.15s; flex-shrink: 0; }
+  details[open] summary::before { transform: rotate(90deg); }
+  .inner { padding: 16px; background: white; border-top: 1px solid #e0e0e0; }
+  .badge { display: inline-block; border-radius: 4px; padding: 2px 8px;
+            font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.04em; flex-shrink: 0; }
+  .badge-found    { background: #d4edda; color: #155724; }
+  .badge-missed   { background: #f8d7da; color: #721c24; }
+  .badge-allpass  { background: #1a9850; color: #fff; font-size: 0.85rem; }
+  .badge-missed-any { background: #fdae61; color: #4a2a04; font-size: 0.85rem; }
+  .title { font-weight: 500; flex: 1; }
+  .field { margin-bottom: 10px; }
+  .field-label { font-size: 0.75rem; font-weight: 600; color: #666;
+                  text-transform: uppercase; letter-spacing: 0.05em;
+                  margin-bottom: 2px; }
+  .reasoning { background: #f8f9fa; border-left: 3px solid #dee2e6;
+                padding: 10px 12px; font-size: 0.88rem; color: #444;
+                border-radius: 0 4px 4px 0; }
+</style>
+</head>
+<body>
+
+<h1>Agent Evaluation Report</h1>
+<div class="meta">
+  Run: <strong>runB_r2</strong> &nbsp;&middot;&nbsp;
+  Task: corporate-ma/review-data-room-red-flag-review &nbsp;&middot;&nbsp;
+  Judge: claude-sonnet-4-6 &nbsp;&middot;&nbsp;
+  Scored: 2026-08-17
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="value">0.00</div><div class="label">Score</div></div>
+  <div class="stat"><div class="value">36/50</div><div class="label">Criteria Passed</div></div>
+  <div class="stat"><div class="value">13/13</div><div class="label">Doc Coverage</div></div>
+  <div class="stat">
+    <div class="value">
+      <span class="badge badge-missed-any">MISSED 14</span>
+    </div>
+    <div class="label">All-pass (every criterion)</div>
+  </div>
+</div>
+
+<h2>Criteria (36 passed, 14 failed)</h2>
+
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_001: Identifies $1.0M EBITDA discrepancy between CIM and QofE</span>
+    <span style="font-size:0.8rem;color:#999">C-001</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo clearly identifies the $1.0M EBITDA discrepancy in RF-01, stating that the CIM presents FY2024 Adjusted EBITDA of $22.8M while the QoE data request response shows Management Adjusted EBITDA of $23.8M. It also references the $18.4M reported EBITDA starting point and the $5.4M add-back package in RF-02, which together total $23.8M. All dollar amounts match the criterion requirements.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_001: Cross-references CIM and QofE as conflicting sources</span>
+    <span style="font-size:0.8rem;color:#999">C-002</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo explicitly cites both the CIM (confidential information memorandum) and the QoE data package (qoe-data-request-response.xlsx equivalent) as conflicting sources. In RF-01, it states: 'The CIM presents FY2024 Adjusted EBITDA of $22.8M, while the QoE data request response (EBITDA Bridge tab) shows Management Adjusted EBITDA of $23.8M.' Both documents are specifically identified as the sources of the conflicting EBITDA figures.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_001: Recommends reconciliation before reliance on valuation multiple</span>
+    <span style="font-size:0.8rem;color:#999">C-003</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">RF-01 explicitly states: 'The Bridgewater Forsyth Group QoE engagement should be required to resolve this discrepancy before any binding valuation is agreed.' This directly satisfies the criterion by recommending reconciliation of the EBITDA discrepancy before relying on any valuation multiple. Additionally, Recommended Next Step #1 reiterates this requirement.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_002: Identifies untransferred Utah permit UTH-0441</span>
+    <span style="font-size:0.8rem;color:#999">C-004</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">RF-09 explicitly identifies that Utah Permit UTH-0441 for the Salt Lake City transfer station was issued to Pinnacle Waste Solutions, LLC and has not been transferred to RES despite the March 2022 acquisition, noting the company has been operating under Pinnacle's permit for nearly three years.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_002: Flags regulatory violation risk under Utah rules</span>
+    <span style="font-size:0.8rem;color:#999">C-005</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">RF-09 explicitly cites Utah Administrative Code R315-3, states that permit modifications reflecting changes in ownership require prior Division approval, notes the Company has been operating under Pinnacle's permit for nearly three years without completing the transfer, and flags the risk of 'a compliance finding or operational disruption.' This satisfies the criterion requiring the memo to flag the regulatory compliance risk (potential violation, enforcement action, or operational shutdown) under Utah hazardous waste regulations.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-missed">FAIL</span>
+    <span class="title">ISSUE_002: Connects Pinnacle subsidiary status to permit issue</span>
+    <span style="font-size:0.8rem;color:#999">C-006</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo discusses the untransferred UTH-0441 permit (RF-09) and notes that Pinnacle Waste Solutions, LLC acquired the SLC facility in 2022 and that the permit remains in Pinnacle's name. However, the memo does not connect this to the fact that Pinnacle Waste Solutions, LLC remains a dormant/undissolved subsidiary of RES as shown in the org chart/equity structure document. The memo treats Pinnacle purely as a prior acquisition target without linking the permit issue to Pinnacle's ongoing corporate existence as a subsidiary within the RES structure.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_003: Flags staleness of 2019 Phase II ESA</span>
+    <span style="font-size:0.8rem;color:#999">C-007</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">RF-06 explicitly states the Phase II ESA was completed in June 2019 (over five years ago), notes no updated assessment has been performed, and flags this as a HIGH severity issue. The memo even quotes the ESA authors' own recommendation to update the assessment 'prior to any property transaction.'</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_003: Notes potential understatement of remediation costs</span>
+    <span style="font-size:0.8rem;color:#999">C-008</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">RF-06 explicitly states that the 2019 remediation cost estimate of $1.8–$2.6M excludes vapor intrusion assessment and mitigation, off-site remediation if plume migration is confirmed, natural resource damage claims, and inflation escalation. It also notes that the ESA authors recommended updating the assessment prior to any property transaction. The memo further states that the Company's balance sheet accrual of $2.2M for Grand Junction (within a $3.2M total covering all facilities) 'may be materially insufficient,' directly addressing the concern that the $3.2M accrual covers all facilities and not just Grand Junction. This satisfies the criterion requiring notation of potential understatement due to inflation, contaminant migration, and the inadequacy of the current accrual.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_003: Recommends current Phase II ESA as closing condition</span>
+    <span style="font-size:0.8rem;color:#999">C-009</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo explicitly recommends commissioning an updated Phase II ESA in multiple places. In RF-06, the Action Required states: 'Commission an updated Phase II ESA and vapor intrusion assessment immediately; obtain independent remediation cost estimate; negotiate a specific environmental escrow or indemnification carve-out with an extended survival period.' Additionally, in Section 8 (Recommended Next Steps), item 2 states: 'Commission an updated Phase II ESA (RF-06): Engage an independent environmental consultant to update the 2019 assessment, conduct a vapor intrusion assessment, and install off-site sentinel monitoring wells. Results should inform the environmental indemnification structure.' This clearly satisfies the criterion of recommending that the buyer require a current/updated Phase II ESA for the Grand Junction facility.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_004: Identifies DOE contract customer concentration risk</span>
+    <span style="font-size:0.8rem;color:#999">C-010</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo explicitly identifies the DOE IDIQ contract (DE-EM-0005523) as the Company's largest customer at $24.4M representing 19.2% of TTM revenue, notes the $45.0M ceiling value with $32.7M consumed leaving $12.3M remaining, and flags this as a HIGH-CRITICAL severity red flag (RF-11) with a projected $12.1M+ revenue headwind in FY2025 as the ceiling is exhausted by approximately April-May 2025.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_004: Discusses Anti-Assignment Act or novation risk</span>
+    <span style="font-size:0.8rem;color:#999">C-011</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo explicitly discusses the Anti-Assignment Act (41 U.S.C. § 6305) and FAR 42.12 in RF-11, noting that the DOE contract 'is also subject to the Anti-Assignment Act (41 U.S.C. § 6305) and FAR 42.12, requiring Contracting Officer notification and potential novation for any change in ownership exceeding 50%.' It also appears in the customer contract table (RF-13) listing the DOE contract as 'Non-assignable per Anti-Assignment Act; novation may be required.' The recommended next steps further instruct the buyer to 'obtain written confirmation from the DOE Contracting Officer regarding novation requirements.' This satisfies the criterion.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_005: Identifies pollution liability insurance gap for Grand Junction</span>
+    <span style="font-size:0.8rem;color:#999">C-012</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">RF-06 explicitly states: 'The contamination is characterized as resulting from gradual, long-term releases — which is the precise exclusion trigger under the Pollution Legal Liability policy (which covers only sudden and accidental releases discovered within 72 hours). Accordingly, insurance coverage for the Grand Junction remediation is effectively unavailable.' This directly identifies that the PLL policy excludes gradual contamination, that Grand Junction's documented contamination falls within this exclusion, and that the most significant known environmental liability is therefore uninsured.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_005: Cross-references insurance policy with Phase II ESA</span>
+    <span style="font-size:0.8rem;color:#999">C-013</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">In RF-06, the memo explicitly cross-references both the Phase II ESA characterization and the insurance policy exclusion. It states that 'The contamination is characterized as resulting from gradual, long-term releases' (drawing from the Phase II ESA) and then directly connects this to the Pollution Legal Liability policy, noting it 'covers only sudden and accidental releases discovered within 72 hours.' The memo concludes that 'insurance coverage for the Grand Junction remediation is effectively unavailable' — establishing the coverage gap by linking the ESA's contamination characterization with the insurance policy's gradual contamination exclusion.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_005: Notes implications for indemnification structure</span>
+    <span style="font-size:0.8rem;color:#999">C-014</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo explicitly addresses how the uninsured environmental liability should be handled in the deal structure in multiple places. In RF-06, it notes that the Grand Junction contamination results from 'gradual, long-term releases' which triggers the pollution exclusion, making insurance coverage 'effectively unavailable,' and then recommends negotiating 'a specific environmental escrow or indemnification carve-out with an extended survival period.' In Section 8 (Recommended Next Steps), item 7 specifically calls for '(i) a specific environmental escrow of at least $3–5M with a 6-year survival period' and '(ii) a specific CDPHE enforcement escrow of $1.2M.' RF-10 also recommends requiring sellers to procure 'a standalone asbestos completed operations tail policy' and negotiating 'a specific indemnification carve-out for asbestos-related claims.' These recommendations directly address the insurance gap through expanded indemnification, special escrows, and tail insurance policies.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_006: Identifies CDPHE penalty exposure disparity ($450K vs $1.16M)</span>
+    <span style="font-size:0.8rem;color:#999">C-015</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">RF-07 explicitly identifies the CDPHE enforcement action (Docket No. CDPHE-HW-2024-0093) and quantifies both positions: Company position of 12 days with maximum penalty of $450,000, and CDPHE position of 31 days with maximum penalty of $1,162,500. The disparity between the two positions is clearly presented.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_006: Notes CDPHE penalties not reserved or included in adjustments</span>
+    <span style="font-size:0.8rem;color:#999">C-016</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo explicitly states in RF-07 that 'No accrual has been recorded' for the CDPHE enforcement action (penalty range $450K-$1.16M), satisfying the requirement to note the absence of reserves. In RF-02, the memo flags that the $1.2M litigation settlement add-back is mislabeled as 'Harper Environmental' in the QoE workbook, while the actual settlement is the 'Clearwater Logistics' matter, and that 'Harper Environmental' is 'a separate, still-pending matter' — directly noting the discrepancy between the add-back and the CDPHE matter. Together these satisfy the criterion.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_007: Identifies Salt Lake City lease assignment/change-of-control issue</span>
+    <span style="font-size:0.8rem;color:#999">C-017</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo clearly identifies the Salt Lake City lease issue in RF-12. It specifies that the lease at 2100 West North Temple was executed by Pinnacle Waste Solutions, LLC in 2019, that Section 14 defines any 'change of control of Tenant' as an assignment requiring landlord consent, that RES requested consent on April 12, 2022 following the Pinnacle acquisition but received no response in over 2.5 years, and that the landlord Wasatch Industrial Properties, LLC sent a compliance inquiry in November 2024 referencing the consent-to-assignment clause. All required elements of the criterion are present.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_007: Connects lease issue with permit transfer issue for SLC</span>
+    <span style="font-size:0.8rem;color:#999">C-018</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo connects both issues in multiple places. RF-09 explicitly discusses the Utah SLC permit (UTH-0441) remaining in Pinnacle's name and links it to the Pinnacle acquisition, noting the permit transfer has been pending since 2022. RF-12 discusses the SLC lease assignment issue, noting the unresolved landlord consent from the 2022 Pinnacle acquisition. The Executive Summary also flags both issues together, stating 'the SLC transfer station lease (serving ~$16.2M of revenue) has an unresolved landlord consent from the 2022 Pinnacle acquisition, and the facility's RCRA-equivalent permit remains in Pinnacle's name; the proposed transaction would layer a second change-of-control event on top of the unresolved first.' This directly connects the lease assignment issue with the untransferred permit, both remaining in Pinnacle's name for the same SLC facility.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_008: Identifies omitted NLRB election petition</span>
+    <span style="font-size:0.8rem;color:#999">C-019</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">RF-21 explicitly identifies the NLRB election petition filed on November 4, 2024, by the International Brotherhood of Teamsters Local 455, covering 62 field technicians at the Grand Junction and Casper facilities. The memo also specifically notes that this was not disclosed in the CIM, which characterized the workforce as 'entirely non-unionized' and stated management 'maintains positive and productive relations with employees.' Both required elements—identification of the petition and flagging the CIM omission—are present.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_008: Discusses implications of potential unionization</span>
+    <span style="font-size:0.8rem;color:#999">C-020</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">RF-21 explicitly discusses the implications of the NLRB unionization petition beyond merely mentioning it. The memo states that a successful union election 'could result in collective bargaining obligations, wage increases, work rule changes, and increased operational costs' — directly addressing increased labor costs, reduced operational flexibility, and collective bargaining obligations. It also notes the credit agreement treats a material labor dispute as an Event of Default, and asks the team to assess whether the petition constitutes a Material Adverse Change. These are substantive deal implications, satisfying the criterion.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_009: Identifies deferred maintenance capex concern</span>
+    <span style="font-size:0.8rem;color:#999">C-021</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">RF-04 explicitly identifies that management's normalized maintenance capex of $4.0–$4.5M per year is understated, noting the fleet has an average age of 8.2 years against a 7.0-year useful life, with 38 of 85 assets (44.7%) at or past useful life and a $9.8M replacement backlog. The memo calculates the true normalized maintenance capex at approximately $7.3–$7.8M annually, directly addressing the deferred fleet replacement concern and its impact on free cash flow.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_009: Quantifies deferred capex impact on free cash flow</span>
+    <span style="font-size:0.8rem;color:#999">C-022</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">RF-04 explicitly quantifies the deferred capex impact. The memo states that spreading the $9.8M backlog over three years implies approximately $3.3M per year in catch-up capex above the stated run-rate, bringing true normalized maintenance capex to approximately $7.3–$7.8M annually (versus management's $4.0–$4.5M estimate). This implies a gap of roughly $2.8–$3.3M per year above management's projection, which falls within or near the $1.5M–$3.0M free cash flow reduction range specified in the criterion. The quantification is explicit and directly addresses the criterion's requirements.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-missed">FAIL</span>
+    <span class="title">ISSUE_010: Identifies ERISA risk from 401(k) match suspension</span>
+    <span style="font-size:0.8rem;color:#999">C-023</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo does not mention the 401(k) match suspension from January through June 2023, the safe harbor 401(k) plan designation, or any ERISA compliance risk related to mid-year suspension of safe harbor contributions. The human capital section (RF-21 and RF-22) covers only the NLRB unionization petition and single-trigger CoC severance, with no reference to the 401(k) issue at all.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-missed">FAIL</span>
+    <span class="title">ISSUE_010: Notes potential consequences of safe harbor violation</span>
+    <span style="font-size:0.8rem;color:#999">C-024</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo does not mention a 401(k) safe harbor violation at all. There is no discussion of any 401(k) issue, safe harbor provisions, plan disqualification, corrective contribution obligations, or excise taxes anywhere in the document. The memo covers financial, environmental, commercial, debt, real property, and human capital issues, but the specific 401(k) safe harbor topic is entirely absent.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-missed">FAIL</span>
+    <span class="title">ISSUE_011: Identifies change-of-control severance totaling $3,775,000</span>
+    <span style="font-size:0.8rem;color:#999">C-025</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo identifies the Calloway brothers (CEO and COO) with single-trigger severance of $1,312,500 each ($2,625,000 combined), and mentions Engel ($425K), Dillon ($375K), and Oakes ($350K) for double-trigger provisions totaling $1,150,000. However, the memo never aggregates these into a total of $3,775,000. More critically, the criterion requires identifying the total change-of-control severance across five executives as approximately $3,775,000 ($2,625,000 + $1,150,000). The memo treats these as separate figures and never presents the combined total. Additionally, the executives are not identified by their titles matching the criterion (CFO, VP Ops, VP BD) — they are referred to only as 'Engel,' 'Dillon,' and 'Oakes' without confirming which roles they hold. The criterion specifically requires the total to be identified as approximately $3,775,000, which the memo fails to do.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_011: Flags LOI transaction expense definition may not capture CoC severance</span>
+    <span style="font-size:0.8rem;color:#999">C-026</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">RF-22 explicitly states that 'The LOI's definition of "Transaction Expenses" does not expressly address CoC severance, creating ambiguity about whether these amounts reduce the purchase price or are borne by the Buyer.' The recommended action for RF-22 also states 'Confirm treatment of CoC severance in the SPA's Transaction Expenses definition' and Section 8's SPA indemnification recommendations include 'express treatment of CoC severance as a seller transaction expense.' The memo identifies the gap in the LOI's transaction expense definition and recommends clarifying it in the definitive agreement. Note: the criterion references $3,775,000 total but the memo calculates $2,625,000 (single-trigger) + $1,150,000 (double-trigger contingent) = $3,775,000, which matches. The core criterion requirement — flagging that the LOI's transaction expense definition may not capture CoC severance — is satisfied.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_012: Identifies mandatory prepayment of $38.7M upon change of control</span>
+    <span style="font-size:0.8rem;color:#999">C-027</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">RF-16 explicitly identifies the High Plains National Bank senior secured credit agreement's Change of Control provision requiring mandatory prepayment of all outstanding obligations within five (5) business days. The memo correctly states total funded debt of $38.7M, broken down as $12.4M revolver + $26.3M term loan, matching the criterion exactly.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_012: Identifies 1% prepayment premium of $263,000 on term loan</span>
+    <span style="font-size:0.8rem;color:#999">C-028</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo explicitly identifies the 1% prepayment premium on the term loan in RF-16, stating 'The term loan carries a 1.0% prepayment premium (approximately $263K assuming closing in Year 3).' The $263K figure matches the criterion's expected calculation (1% × $26.3M). The memo also references 'Year 3' timing, consistent with the January 2023 origination date and a prepayment before January 2026. The criterion is satisfied.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-missed">FAIL</span>
+    <span class="title">ISSUE_012: Flags LOI net debt definition may omit prepayment premium</span>
+    <span style="font-size:0.8rem;color:#999">C-029</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo does address the prepayment premium in RF-16, noting that 'the prepayment premium and accrued interest are additional costs that must be factored into the closing statement' and recommending to 'confirm the prepayment premium calculation; include the premium and accrued interest in the Net Debt definition in the SPA.' However, the criterion specifically requires that the memo flag the gap in the LOI's net debt definition — noting that the LOI's net debt definition includes 'all outstanding indebtedness for borrowed money' but does not reference prepayment premiums. The memo does not quote or reference the LOI's specific net debt language, does not identify the gap in the LOI's definition as the issue, and does not frame the recommendation as correcting a deficiency in the LOI's net debt definition. The recommendation is framed as a general SPA drafting point rather than identifying a specific gap in the LOI's existing net debt definition language.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_013: Scrutinizes $1.8M asbestos abatement wind-down add-back</span>
+    <span style="font-size:0.8rem;color:#999">C-030</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo scrutinizes the $1.8M asbestos wind-down add-back in RF-02, noting it is the largest single add-back item. While it acknowledges it as a 'legitimate non-recurring item,' it immediately questions it by noting the litigation summary discloses two open workers' compensation claims from former asbestos employees and 'potential long-tail exposure pre-dating the January 1, 2015 PLL retroactive date.' RF-10 further elaborates on the asbestos long-tail exposure, noting RES operated the asbestos abatement service line from 2012 through September 30, 2023 (11 years), generating ~$31.2M in cumulative revenue across ~145 sites, with the PLL policy's retroactive date of January 1, 2015 leaving pre-2015 work uncovered, and no reserve established for potential future asbestos-related personal injury claims. The memo thus does not accept the add-back at face value and raises material concerns about long-tail liability, satisfying the criterion.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">ISSUE_013: Notes long-tail asbestos liability risk</span>
+    <span style="font-size:0.8rem;color:#999">C-031</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">RF-10 explicitly identifies the long-tail asbestos liability risk, noting RES operated asbestos abatement from 2012 through September 2023 (~11 years) across ~145 sites, with a pre-2015 PLL coverage gap and open workers' compensation claims. The action required section recommends quantifying the pre-2015 exposure, requiring sellers to procure a standalone asbestos completed operations tail policy, and negotiating 'a specific indemnification carve-out for asbestos-related claims with an extended survival period' — directly addressing the reps/warranties/indemnification requirement in the criterion.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-missed">FAIL</span>
+    <span class="title">DISTRACTOR_001: Does not flag Wyoming permit as a red flag</span>
+    <span style="font-size:0.8rem;color:#999">C-032</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo explicitly flags the Wyoming permit expiration as RF-08 with a 'MEDIUM' severity rating and recommends remedial action: 'Obtain written confirmation from Wyoming DEQ of the renewal timeline and absence of any deficiencies in the application; include permit renewal as a specific closing condition.' This goes beyond routine monitoring and treats the timely renewal as a material red flag, which fails the criterion.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-missed">FAIL</span>
+    <span class="title">DISTRACTOR_002: Does not flag Consolidated Mining TFC clause as red flag</span>
+    <span style="font-size:0.8rem;color:#999">C-033</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">RF-14 explicitly classifies the CMMC 60-day termination-for-convenience clause as a standalone red flag with MEDIUM severity and requires specific remedial action: 'Seek a multi-year contract extension with CMMC prior to closing; assess CMMC's financial condition and any competitive threats to the relationship.' The memo does not characterize this clause as standard in commercial services agreements, but instead treats it as a material concern requiring specific pre-closing action. This fails the criterion, which requires a PASS only if the memo either omits the clause as a standalone red flag or mentions it only in the context of customer concentration while noting such clauses are standard.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">DISTRACTOR_003: Does not flag RidgeTrack IP as a material red flag</span>
+    <span style="font-size:0.8rem;color:#999">C-034</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo does not mention RidgeTrack IP or any issue about lack of registered copyright for internally developed software anywhere in its 22 red flags. The criterion requires a PASS if the memo does not flag this as a material red flag, which is exactly the case here.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">DISTRACTOR_004: Does not flag Grand Junction appraisal age as red flag</span>
+    <span style="font-size:0.8rem;color:#999">C-035</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo flags the Grand Junction appraisal age as RF-20 with a severity of 'LOW-MEDIUM,' which is the lowest severity tier used in the document. It does not classify it as critical or high-severity. This satisfies the criterion's condition (a) or (b) — specifically it is mentioned but treated as low priority, not as a critical or high-severity red flag.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">Executive summary includes top 5 critical findings</span>
+    <span style="font-size:0.8rem;color:#999">C-036</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo contains a clearly labeled Executive Summary section that explicitly highlights six critical findings: (1) EBITDA overstatement and internal inconsistency, (2) DOE IDIQ ceiling exhaustion, (3) Grand Junction environmental contamination, (4) Salt Lake City lease and permit double jeopardy, (5) Mandatory credit facility prepayment, and (6) Single-trigger CoC severance. This exceeds the minimum threshold of 5 critical findings required by the criterion.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-missed">FAIL</span>
+    <span class="title">Memo organized by required risk categories</span>
+    <span style="font-size:0.8rem;color:#999">C-037</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo is organized by risk categories, but it does not include all the required categories specified in the criterion. The memo covers: (1) Financial/Quality of Earnings, (2) Environmental & Regulatory, (3) Commercial Contracts & Revenue Sustainability, (4) Debt & Capital Structure, (5) Real Property & Permitting, and (6) Human Capital & Employment. Missing from the memo are dedicated sections for 'Insurance' and 'Litigation' as standalone categories. While insurance issues are mentioned within other sections (e.g., the PLL policy coverage gap in RF-06 and RF-10, asbestos tail coverage in RF-10), and litigation is touched on within financial add-backs (RF-02) and environmental sections, neither Insurance nor Litigation has its own categorical section. The criterion requires at least Insurance and Litigation as distinct categories, and both are absent as standalone sections. This constitutes omission of more than one specified category (Insurance and Litigation are both missing as dedicated sections), which per the criterion results in a FAIL.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">Each red flag includes severity assessment</span>
+    <span style="font-size:0.8rem;color:#999">C-038</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">Every one of the 22 red flags (RF-01 through RF-22) includes an explicit severity rating. The ratings use a tiered system (HIGH, MEDIUM-HIGH, MEDIUM, LOW-MEDIUM) that is substantially equivalent to the Critical/High/Medium/Low scale specified in the criterion. No red flag is missing a severity assessment, so the criterion is satisfied.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-missed">FAIL</span>
+    <span class="title">Each red flag cites specific source document(s)</span>
+    <span style="font-size:0.8rem;color:#999">C-039</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">Reviewing each of the 22 red flags, the majority do not cite specific source documents by name. While some red flags reference document types (e.g., 'QoE data room figure,' 'QoE P&L tab,' 'EBITDA Bridge tab,' 'Fleet & Equipment Schedule,' 'Phase II ESA,' 'Customer Contract Summary (xlsx),' 'Employee Benefits Summary,' 'QoE Revenue by Customer tab'), many red flags lack any named source document citation. For example: RF-07 (CDPHE enforcement action) cites a docket number but no specific data room document; RF-08 (Wyoming permit) cites a permit number but no data room document; RF-09 (Utah SLC permit) cites a permit number but no data room document; RF-10 (asbestos exposure) references no specific document; RF-13 (8 customer contracts with CoC provisions) references no specific document by name; RF-14 (CMMC MSA) references no specific document; RF-16 (credit facility) references the credit agreement generically but not by data room document name; RF-17, RF-18 similarly reference the credit agreement without naming a specific data room file; RF-19 (Pueblo lease) names no document; RF-20 (appraisal) names no document; RF-21 (NLRB petition) only references 'a footnote in the Employee Benefits Summary' which is vague; RF-22 references 'employment agreements' generically. Well more than two red flags lack specific named source document citations from the data room, so the criterion is not met.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">Each red flag includes recommended next steps</span>
+    <span style="font-size:0.8rem;color:#999">C-040</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">Every one of the 22 red flags (RF-01 through RF-22) includes at least one specific 'Action Required' section with concrete recommended next steps or closing conditions. For example, RF-01 demands a reconciled EBITDA bridge signed by the CFO; RF-06 requires commissioning an updated Phase II ESA; RF-11 requires initiating a DOE ceiling modification and novation process; RF-12 requires obtaining landlord consent as a hard closing condition; etc. No red flag lacks a recommended action, far fewer than the two-flag threshold for failure.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-missed">FAIL</span>
+    <span class="title">Memo includes non-issue / cleared items section</span>
+    <span style="font-size:0.8rem;color:#999">C-041</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo contains no section identifying items that initially appeared concerning but were adequately addressed or cleared. The entire document focuses exclusively on red flags and risks across six categories plus a summary risk matrix and recommended next steps. There is no 'non-issues,' 'cleared items,' 'items reviewed and found satisfactory,' or similar section explaining why certain matters do not constitute red flags.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">Red flag tracker spreadsheet is produced</span>
+    <span style="font-size:0.8rem;color:#999">C-042</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The agent produced a red-flag-tracker.xlsx file with three sheets: a Red Flag Tracker (22 red flags with descriptions, severity, financial exposure, source documents, and required actions), a Summary Dashboard (category breakdown, severity counts, and key financial metrics comparison), and an Action Item Register (prioritized action items with owners and timing). The criterion simply requires that a red-flag-tracker.xlsx file be produced, which it clearly was.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">Tracker includes required column structure</span>
+    <span style="font-size:0.8rem;color:#999">C-043</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The tracker includes all required columns: Issue Number (RF #), Risk Category (Category), Description (Description / Key Finding), Severity (Severity), Estimated Financial Exposure (Est. Financial Exposure), Source Document(s) (Source Document(s)), Recommended Action (Required Action / Next Step), and Status (Status). All eight required columns are present with substantially equivalent headers.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">Tracker entries are consistent with memo findings</span>
+    <span style="font-size:0.8rem;color:#999">C-044</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The red flag tracker contains 22 entries (RF-01 through RF-22) that directly correspond to all 22 red flags discussed in the memo. Every major planted issue is represented: EBITDA discrepancy (RF-01), aggressive add-backs (RF-02), reported EBITDA decline (RF-03), fleet backlog (RF-04), unaudited financials (RF-05), Grand Junction ESA (RF-06), CDPHE enforcement (RF-07), Wyoming permit expiry (RF-08), Utah SLC permit (RF-09), asbestos tail (RF-10), DOE IDIQ ceiling exhaustion (RF-11), SLC lease consent (RF-12), customer CoC provisions (RF-13), CMMC termination risk (RF-14), customer list discrepancy (RF-15), mandatory credit facility prepayment (RF-16), bank vs. management EBITDA gap (RF-17), Calloway key-man provision (RF-18), Pueblo lease expiry (RF-19), stale appraisal (RF-20), NLRB petition (RF-21), and single-trigger severance (RF-22). The tracker entries are consistent with the memo findings in terms of severity ratings, financial exposure estimates, source documents cited, and required actions. This far exceeds the minimum threshold of 10 entries covering planted issues.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-missed">FAIL</span>
+    <span class="title">Memo addressed to correct parties for investment committee</span>
+    <span style="font-size:0.8rem;color:#999">C-045</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo is addressed from 'Deal Team / Thornfield & Associates LLP' to 'Sycamore Capital Partners, LP' and references 'Project Ridgeline,' which partially satisfies the criterion. However, it does not reference specific individuals (Naomi Vance, Ryan Sato, Marcus Hahn, or Elaine Whitford) and critically does not reference the January 24, 2025 investment committee meeting. The criterion explicitly requires a reference to the investment committee context/meeting date, which is absent from the memo.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-missed">FAIL</span>
+    <span class="title">Correct identification of top customer concentration figures</span>
+    <span style="font-size:0.8rem;color:#999">C-046</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo correctly states DOE at 19.2% ($24.4M) and Consolidated Mining at 11.4% ($14.5M), but it never mentions the top 10 customers accounting for 67% of revenue. The criterion requires all three figures to be present and correct. The absence of the 67% top-10 concentration figure means the criterion is not fully satisfied.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">Correct total debt figure in net debt discussion</span>
+    <span style="font-size:0.8rem;color:#999">C-047</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">In RF-16, the memo correctly states total funded debt as $38.7M, broken down as $12.4M revolver and $26.3M term loan, which matches the criterion exactly.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-found">PASS</span>
+    <span class="title">Correct EBITDA add-back itemization</span>
+    <span style="font-size:0.8rem;color:#999">C-048</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo in RF-02 explicitly itemizes all five EBITDA add-backs: Litigation settlement (Clearwater Logistics) $1.2M, Owner compensation normalization $0.95M, ERP implementation costs $0.65M, Pinnacle integration costs $0.80M, and Asbestos wind-down costs $1.80M, totaling $5.4M. All individual amounts match the criterion exactly (within $100K tolerance), and the total is correct.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-missed">FAIL</span>
+    <span class="title">Holdback structure noted for indemnification context</span>
+    <span style="font-size:0.8rem;color:#999">C-049</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo does not reference the 10% holdback ($18.2M–$20.5M) with 18-month survival for general representations. While the memo does mention a 6-year survival period for environmental representations (in RF-06 and Section 8), it never discusses the holdback structure itself (the 10% escrow amount or the 18-month general rep survival period) or relates it to the identified risks in any meaningful way. The criterion requires explicit discussion of the holdback amount and the dual survival period structure (18-month general / 6-year environmental and tax), which is absent from the memo.</div>
+    </div>
+  </div>
+</details>
+<details>
+  <summary>
+    <span class="badge badge-missed">FAIL</span>
+    <span class="title">Ramirez personal injury lawsuit identified</span>
+    <span style="font-size:0.8rem;color:#999">C-050</span>
+  </summary>
+  <div class="inner">
+    <div class="field">
+      <div class="field-label">Judge reasoning</div>
+      <div class="reasoning">The memo does not mention the Ramirez v. RES personal injury lawsuit (Case No. 2:24-cv-00187, D. Wyo.) alleging $4.8M in damages for contamination exposure, filed August 2024. The memo covers 22 red flags across six categories but contains no reference to this specific lawsuit anywhere in the document.</div>
+    </div>
+  </div>
+</details>
+
+</body>
+</html>

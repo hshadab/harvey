@@ -1,0 +1,125 @@
+{
+  "at": "2026-08-17T18:06:39.172330+00:00",
+  "shipped_shingle_words": 10,
+  "documents_dir": "/home/hshadab/harvey-labs/tasks/corporate-ma/review-data-room-red-flag-review/documents",
+  "note": "Detection only. Raising the threshold also reduces false positives on legitimate figure reporting, which this does not measure \u2014 that needs a guarded run at the new setting.",
+  "thresholds": [
+    {
+      "shingle_words": 10,
+      "spans_per_run": {
+        "unguarded/runA": 2,
+        "unguarded/runA_r1": 4,
+        "unguarded/runA_r2": 2,
+        "guarded/runB": 0,
+        "guarded/runB-before-bash-fix": 2,
+        "guarded/runB_r1": 0,
+        "guarded/runB_r2": 0
+      },
+      "unguarded_spans_detected": 8
+    },
+    {
+      "shingle_words": 11,
+      "spans_per_run": {
+        "unguarded/runA": 1,
+        "unguarded/runA_r1": 3,
+        "unguarded/runA_r2": 1,
+        "guarded/runB": 0,
+        "guarded/runB-before-bash-fix": 2,
+        "guarded/runB_r1": 0,
+        "guarded/runB_r2": 0
+      },
+      "unguarded_spans_detected": 5
+    },
+    {
+      "shingle_words": 12,
+      "spans_per_run": {
+        "unguarded/runA": 0,
+        "unguarded/runA_r1": 2,
+        "unguarded/runA_r2": 1,
+        "guarded/runB": 0,
+        "guarded/runB-before-bash-fix": 2,
+        "guarded/runB_r1": 0,
+        "guarded/runB_r2": 0
+      },
+      "unguarded_spans_detected": 3
+    },
+    {
+      "shingle_words": 13,
+      "spans_per_run": {
+        "unguarded/runA": 0,
+        "unguarded/runA_r1": 0,
+        "unguarded/runA_r2": 1,
+        "guarded/runB": 0,
+        "guarded/runB-before-bash-fix": 1,
+        "guarded/runB_r1": 0,
+        "guarded/runB_r2": 0
+      },
+      "unguarded_spans_detected": 1
+    },
+    {
+      "shingle_words": 14,
+      "spans_per_run": {
+        "unguarded/runA": 0,
+        "unguarded/runA_r1": 0,
+        "unguarded/runA_r2": 0,
+        "guarded/runB": 0,
+        "guarded/runB-before-bash-fix": 0,
+        "guarded/runB_r1": 0,
+        "guarded/runB_r2": 0
+      },
+      "unguarded_spans_detected": 0
+    },
+    {
+      "shingle_words": 15,
+      "spans_per_run": {
+        "unguarded/runA": 0,
+        "unguarded/runA_r1": 0,
+        "unguarded/runA_r2": 0,
+        "guarded/runB": 0,
+        "guarded/runB-before-bash-fix": 0,
+        "guarded/runB_r1": 0,
+        "guarded/runB_r2": 0
+      },
+      "unguarded_spans_detected": 0
+    },
+    {
+      "shingle_words": 16,
+      "spans_per_run": {
+        "unguarded/runA": 0,
+        "unguarded/runA_r1": 0,
+        "unguarded/runA_r2": 0,
+        "guarded/runB": 0,
+        "guarded/runB-before-bash-fix": 0,
+        "guarded/runB_r1": 0,
+        "guarded/runB_r2": 0
+      },
+      "unguarded_spans_detected": 0
+    },
+    {
+      "shingle_words": 17,
+      "spans_per_run": {
+        "unguarded/runA": 0,
+        "unguarded/runA_r1": 0,
+        "unguarded/runA_r2": 0,
+        "guarded/runB": 0,
+        "guarded/runB-before-bash-fix": 0,
+        "guarded/runB_r1": 0,
+        "guarded/runB_r2": 0
+      },
+      "unguarded_spans_detected": 0
+    },
+    {
+      "shingle_words": 18,
+      "spans_per_run": {
+        "unguarded/runA": 0,
+        "unguarded/runA_r1": 0,
+        "unguarded/runA_r2": 0,
+        "guarded/runB": 0,
+        "guarded/runB-before-bash-fix": 0,
+        "guarded/runB_r1": 0,
+        "guarded/runB_r2": 0
+      },
+      "unguarded_spans_detected": 0
+    }
+  ]
+}

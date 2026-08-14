@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.env
+# Sandbox workspace copies. NB the layout is runs/<mode>/<run-id>/workspace,
+# so the old `runs/*/workspace/` pattern never matched and LAB's skill
+# scripts were being staged. We copy nothing of harvey-labs into this repo.
+runs/**/workspace/
+# NB: do not exclude repeat runs by name. This previously read
+# `runs/guarded/runB_r*/`, added while those dirs held aborted runs; when
+# they were re-run successfully the rule silently kept the evidence for the
+# n=3 parity result out of the repo. Incompleteness is detected by the
+# absence of metrics.json (scripts/span_report.py), not by filename.

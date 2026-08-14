@@ -1,0 +1,14 @@
+{
+  "proof_id": "1a825b73-50ac-43ca-8ce6-1d8d23c537c9",
+  "policy_id": "d777b3d8-b2c3-4a1c-a24d-81790156f75d",
+  "policy_hash": "297bbf4549ea7f5b9fc94d8b5588be8f65bb75fba757ca03395b9e311eb9cdff",
+  "claimed_result": 1,
+  "result": "UNSAT",
+  "valid": true,
+  "used": false,
+  "trace_length": 1048576,
+  "prove_ms": 34356,
+  "verify_ms": 400,
+  "proof_bytes_len": 93418,
+  "created_at": "2026-08-14T13:23:43.255255Z"
+}

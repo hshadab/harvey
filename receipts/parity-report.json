@@ -1,0 +1,113 @@
+{
+  "at": "2026-08-18T09:46:55.247146+00:00",
+  "verdict": "PARITY-MARGINAL",
+  "reason": "ranges overlap (unguarded 34-39, guarded 29-36) but the guarded median 32 is below the unguarded floor 34: only 1 of 4 guarded runs reach it, and the means differ by 3.4 criteria. Overlap here rests on the best guarded run, not the typical one \u2014 report it as such, do not claim parity",
+  "unguarded_n_passed": [
+    34,
+    34,
+    39
+  ],
+  "guarded_n_passed": [
+    29,
+    31,
+    33,
+    36
+  ],
+  "within_arm_flips": {
+    "unguarded": 15,
+    "guarded": 23
+  },
+  "systematic_cost_criteria": [],
+  "criteria_lost_under_guard": [
+    {
+      "id": "C-005",
+      "title": "ISSUE_002: Flags regulatory violation risk under Utah rules"
+    },
+    {
+      "id": "C-008",
+      "title": "ISSUE_003: Notes potential understatement of remediation costs"
+    },
+    {
+      "id": "C-028",
+      "title": "ISSUE_012: Identifies 1% prepayment premium of $263,000 on term loan"
+    },
+    {
+      "id": "C-030",
+      "title": "ISSUE_013: Scrutinizes $1.8M asbestos abatement wind-down add-back"
+    },
+    {
+      "id": "C-047",
+      "title": "Correct total debt figure in net debt discussion"
+    },
+    {
+      "id": "C-048",
+      "title": "Correct EBITDA add-back itemization"
+    }
+  ],
+  "excluded_corrupted": [],
+  "runs": [
+    {
+      "path": "runs/guarded/runB/scores.json",
+      "arm": "guarded",
+      "run_id": "runB",
+      "n_passed": 29,
+      "n_criteria": 50,
+      "scored_at": "2026-08-14T19:20:36.925259+00:00",
+      "corrupted": false
+    },
+    {
+      "path": "runs/guarded/runB_dm1/scores.json",
+      "arm": "guarded",
+      "run_id": "runB_dm1",
+      "n_passed": 31,
+      "n_criteria": 50,
+      "scored_at": "2026-08-17T20:44:08.056558+00:00",
+      "corrupted": false
+    },
+    {
+      "path": "runs/guarded/runB_r1/scores.json",
+      "arm": "guarded",
+      "run_id": "runB_r1",
+      "n_passed": 33,
+      "n_criteria": 50,
+      "scored_at": "2026-08-17T16:36:14.390262+00:00",
+      "corrupted": false
+    },
+    {
+      "path": "runs/guarded/runB_r2/scores.json",
+      "arm": "guarded",
+      "run_id": "runB_r2",
+      "n_passed": 36,
+      "n_criteria": 50,
+      "scored_at": "2026-08-17T16:52:26.864843+00:00",
+      "corrupted": false
+    },
+    {
+      "path": "runs/unguarded/runA/scores.json",
+      "arm": "unguarded",
+      "run_id": "runA",
+      "n_passed": 34,
+      "n_criteria": 50,
+      "scored_at": "2026-08-14T16:30:49.343388+00:00",
+      "corrupted": false
+    },
+    {
+      "path": "runs/unguarded/runA_r1/scores.json",
+      "arm": "unguarded",
+      "run_id": "runA_r1",
+      "n_passed": 39,
+      "n_criteria": 50,
+      "scored_at": "2026-08-14T20:31:30.580749+00:00",
+      "corrupted": false
+    },
+    {
+      "path": "runs/unguarded/runA_r2/scores.json",
+      "arm": "unguarded",
+      "run_id": "runA_r2",
+      "n_passed": 34,
+      "n_criteria": 50,
+      "scored_at": "2026-08-14T20:43:59.343469+00:00",
+      "corrupted": false
+    }
+  ]
+}

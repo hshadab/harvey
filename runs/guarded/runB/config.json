@@ -1,0 +1,15 @@
+{
+  "model": "anthropic/claude-sonnet-4-6",
+  "task": "corporate-ma/review-data-room-red-flag-review",
+  "run_id": "runB",
+  "policy_id": "d777b3d8-b2c3-4a1c-a24d-81790156f75d",
+  "mode": "demo",
+  "max_turns": 200,
+  "temperature": 0.0,
+  "skills": [
+    "docx",
+    "pptx",
+    "xlsx"
+  ],
+  "started_at": "2026-08-14T18:11:13.720471+00:00"
+}

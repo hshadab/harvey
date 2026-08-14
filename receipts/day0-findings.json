@@ -1,0 +1,13 @@
+{
+  "at": "2026-08-14T13:17:42.747007+00:00",
+  "policy_id": "d777b3d8-b2c3-4a1c-a24d-81790156f75d",
+  "checkItProd_fields": [
+    "detail",
+    "findings",
+    "reasoning_action",
+    "result",
+    "verification_time_ms"
+  ],
+  "order_download_then_verify": "no proof_id returned",
+  "order_verify_then_download": "no proof_id returned"
+}

@@ -1,0 +1,14 @@
+{
+  "proof_id": "15c56e4a-a13b-4a14-bdf8-92d4aabb05f7",
+  "policy_id": "d777b3d8-b2c3-4a1c-a24d-81790156f75d",
+  "policy_hash": "77fd4f3881be3bf867deafe8ba6559f54f95e244a149dd383501636fe04b2ffd",
+  "claimed_result": 0,
+  "result": "SAT",
+  "valid": true,
+  "used": false,
+  "trace_length": 1048576,
+  "prove_ms": 35082,
+  "verify_ms": 400,
+  "proof_bytes_len": 93418,
+  "created_at": "2026-08-14T18:27:00.712567Z"
+}
