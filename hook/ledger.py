@@ -85,16 +85,29 @@ def load_entries(jsonl_path: str | Path) -> list[dict]:
     return entries
 
 
-def render_markdown(entries: list[dict]) -> str:
+def render_markdown(entries: list[dict],
+                    receipts_dir: str | Path | None = None) -> str:
+    """Render the ledger as a markdown table.
+
+    The proof column shows the proof id and, when its binary is present in
+    `receipts_dir`, an `(archived)` marker — the on-disk ground truth.
+    In-flight/transient states are not narrated: the ledger's job is to
+    show that every action was checked (check_id + verdict) and which
+    proofs are on hand. Reviewers mint and verify their own proof
+    (verify_yourself.md), since archived proofs are single-use.
+    """
+    receipts = Path(receipts_dir) if receipts_dir else None
     lines = [
         "| # | action | result | check_id | time (ms) | proof |",
         "|---|--------|--------|----------|-----------|-------|",
     ]
     for e in entries:
-        proof = e.get("proof_id") or "—"
-        status = e.get("proof_status")
-        if proof != "—" and status:
-            proof = f"{proof} ({status})"
+        pid = e.get("proof_id")
+        proof = "—"
+        if pid:
+            on_disk = (receipts and (receipts / f"{pid}.proof.bin").exists()) \
+                or e.get("proof_status") == "consumed-by-download"
+            proof = f"{pid} (archived)" if on_disk else pid
         result = e["result"]
         badge = {"SAT": "✅ SAT", "UNSAT": "🛑 UNSAT",
                  "SKIPPED": "· skipped", "OUTAGE-BLOCKED": "⚠️ outage"}.get(

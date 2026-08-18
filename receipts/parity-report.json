@@ -1,5 +1,5 @@
 {
-  "at": "2026-08-18T09:46:55.247146+00:00",
+  "at": "2026-08-18T10:41:07.855957+00:00",
   "verdict": "PARITY-MARGINAL",
   "reason": "ranges overlap (unguarded 34-39, guarded 29-36) but the guarded median 32 is below the unguarded floor 34: only 1 of 4 guarded runs reach it, and the means differ by 3.4 criteria. Overlap here rests on the best guarded run, not the typical one \u2014 report it as such, do not claim parity",
   "unguarded_n_passed": [
