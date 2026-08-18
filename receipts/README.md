@@ -19,6 +19,14 @@ run's receipt count reflects what is genuinely on hand rather than what
 was requested. Every check has its `check_id` and verdict in the ledger
 regardless — the decision trail is complete.
 
+Counting note: 89 and 122 count **ledger entries** across all committed
+guarded ledgers. `runB-before-bash-fix/ledger.json` is the preserved
+before-picture of `runB`, and its 12 proof-bearing entries also appear
+in `runB/ledger.json`, so they are counted twice; the distinct binaries
+referenced by run ledgers number 77. The directory holds 80 binaries in
+total: those 77, plus 2 from the pre-run live validation
+(`live-validation-ledger.json`) and 1 from the day-0 gate.
+
 Because they are consumed, **a reviewer cannot verify these**. Run your
 own check and verify your own proof instead — `verify_yourself.md`.
 

@@ -71,11 +71,12 @@ Regenerate: `python3 -m scripts.parity_gate`.
 
 ## Parity: PARITY-MARGINAL — not a pass
 
-`scripts/parity_gate.py` returns **PARITY-MARGINAL** at n=3 per arm (exit
-code 1). The ranges overlap (unguarded 34–39, guarded 29–36), but the
-guarded **median of 33 is below the unguarded floor of 34**: only 1 of 3
-guarded runs reaches it, and the means differ by 3.0 criteria. The overlap
-rests on the single best guarded run, not the typical one.
+`scripts/parity_gate.py` returns **PARITY-MARGINAL** at n=3 unguarded /
+n=4 guarded (exit code 1). The ranges overlap (unguarded 34–39, guarded
+29–36), but the guarded **median of 32 is below the unguarded floor of
+34**: only 1 of 4 guarded runs reaches it, and the means differ by 3.4
+criteria. The overlap rests on the single best guarded run, not the
+typical one.
 
 The gate deliberately does not treat that as parity. Range overlap alone
 is satisfiable by one strong run while every other guarded run sits below,
@@ -83,13 +84,13 @@ so PLAUSIBLE additionally requires the guarded median to reach the
 baseline floor. Read on **criteria passed**, never LAB's headline `score`,
 which is all-or-nothing and reads 0.00 for every run here.
 
-At n=3 per arm the gap is roughly 0.9 pooled sd — **not distinguishable
+At these sample sizes the gap is roughly 1.2 pooled sd — **not distinguishable
 from run-to-run noise, and equally not shown to be free.** The supportable
 claim is "no measurable degradation at this sample size." Not parity.
 
 ### Where the gap comes from — and why the obvious fix is wrong
 
-Of the criteria passing unguarded but failing guarded, four of five turn
+Of the criteria passing unguarded but failing guarded, four of six turn
 on **exact figures**: the $263,000 prepayment premium, the $1.8M asbestos
 add-back, the total debt figure, the EBITDA add-back itemisation.
 "A 1% prepayment premium of $263,000 on the term loan" is hard to state

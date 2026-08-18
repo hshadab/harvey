@@ -131,6 +131,35 @@ imagined; a capable agent pursuing a blocked goal tried three we had not.
 Only comparing the ledger against the shipped artifact revealed it —
 neither alone showed anything wrong.
 
+## Defect 1 — LAB's evaluator, not this hook (upstream; reported)
+
+*(Kept under the name "Defect 1" because `scripts/setup_and_run.sh` and
+`scripts/parity_gate.py` cite it that way; it is separate from the hook
+findings §1–§6 above.)*
+
+When a deliverable can't be converted to text — e.g. `pandoc` missing
+from the host, which `uv sync` does not install —
+`evaluation/scoring.py::_read_file_as_text` returns the error **as a
+string**, and the judge grades that string as the memo's content, failing
+criteria with confident reasoning ("no memo content was produced") while
+the actual memo sits on disk. Nothing downstream distinguishes "the file
+was unreadable" from "the agent produced a file containing an error
+message."
+
+Observed 2026-08-14: the same runA artifacts scored **7/50** without
+pandoc (43 criteria failing on the converter error) and **34/50** after
+`apt install pandoc` and a re-score. The corrupted `scores.json` was
+overwritten by that re-score, so the 7/50 artifact is not preserved;
+the mechanism reproduces on any `.docx`-deliverable task scored on a
+host without pandoc.
+
+Mitigations in this repo: `scripts/setup_and_run.sh` installs pandoc up
+front, and `scripts/parity_gate.py` excludes any scoring whose criteria
+reasonings majority-cite a converter failure (`CORRUPTION_MARKERS`).
+
+Reported upstream 2026-08-18:
+https://github.com/harveyai/harvey-labs/issues/145
+
 ## The 10 probes (all green)
 | Pathway | Expected |
 |---|---|
